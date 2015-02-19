@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5675FCF3-D1DD-480B-96FE-E49F2D4F3A8D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>KungFq</RootNamespace>
+    <AssemblyName>KungFq</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.4</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SevenZipSharp">
+      <HintPath>lib\SevenZipSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="IFastqDeCompresser.cs" />
+    <Compile Include="FastqReader.cs" />
+    <Compile Include="FastqDeCompresser.cs" />
+    <Compile Include="EncodedFastqReader.cs" />
+    <Compile Include="IIdDeCompresser.cs" />
+    <Compile Include="PlainIdDeCompresser.cs" />
+    <Compile Include="SraIdDeCompresser.cs" />
+    <Compile Include="EncodeIdDeCompresser.cs" />
+    <Compile Include="FastqCutoffReader.cs" />
+    <Compile Include="PlaceholderIdGenerator.cs" />
+    <Compile Include="ICoder.cs" />
+    <Compile Include="CommandLineParser.cs" />
+    <Compile Include="CRC.cs" />
+    <Compile Include="OutBuffer.cs" />
+    <Compile Include="InBuffer.cs" />
+    <Compile Include="RangeCoderBitTree.cs" />
+    <Compile Include="RangeCoderBit.cs" />
+    <Compile Include="RangeCoder.cs" />
+    <Compile Include="IMatchFinder.cs" />
+    <Compile Include="LzInWindow.cs" />
+    <Compile Include="LzBinTree.cs" />
+    <Compile Include="LzOutWindow.cs" />
+    <Compile Include="LzmaBase.cs" />
+    <Compile Include="LzmaDecoder.cs" />
+    <Compile Include="LzmaEncoder.cs" />
+    <Compile Include="LzmaStream.cs" />
+    <Compile Include="IQualityCounter.cs" />
+    <Compile Include="DummyQualityCounter.cs" />
+    <Compile Include="QualityCounter.cs" />
+    <Compile Include="HistogramDrawer.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\ICSharpCode.SharpZipLib.dll" />
+  </ItemGroup>
+</Project>

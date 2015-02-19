@@ -1,0 +1,69 @@
+REQUIREMENTS
+
+.NET 2.0 on Windows or mono (>=2.6) for Linux and Mac.
+
+COMPILING AND RUNNING
+
+If you want to compile the project you can either use Monodevelop
+(opening the .sln) or Visual Studio (opening the .csproj) or run
+./configure & make from a terminal.
+
+Otherwise you can directly use the executables: on
+Linux launch kungfq (bash script found in the KungFq_bin.tar.gz file) from
+the decompressed directory KungFq_bin
+and on Windows use KungFq_bin/KungFq.exe (file found in the KungFq_bin.zip file).
+
+EXAMPLES and OPTIONS
+Assuming that example.fastq is a fastq file with reads of 36 bases
+
+to compress:
+$ mono KungFq.exe -m encode -z gzip -l 36 example.fastq > example.kfq
+or
+$ mono KungFq.exe -m encode -z gzip -l 36 < example.fastq > example.kfq
+
+to decompress:
+$ mono KungFq.exe -m decode -z gzip -l 36 < example.qfq > example_decoded.fastq
+or
+$ mono KungFq.exe -m decode -z gzip -l 36 example.qfq > example_decoded.fastq
+
+-z could be 'none', 'gzip' or 'lzma'. Lzma is slower but has a better
+compression ratio, none should be used to further compress the
+encoded data with other algorithms (note that one has to use the
+same options when encoding/decoding the same file).
+Warning: when encoding and using lzma the output can't be written on the
+standard output therefore the desired file name should be the last argument
+and for the same reason when decoding the compressed file name should be the
+last argument and it should not be piped in the standard input.
+For example:
+$ mono KungFq.exe -m encode -z lzma -l 36 example.kfq < example.fastq
+and
+$ mono KungFq.exe -m decode -z lzma -l 36 example.kfq > example_decoded.fastq
+
+-m and -l options are compulsory when one want to encode 
+or decode a file; but if one only wants an histogram depicting
+how many times the different quality values appear in the fastq it is
+possible to just use -s with the desider prefix for the .txt and .svg
+file that will be created. 
+Therefore:
+$ mono KungFq.exe -s example < example.fastq
+will create two files: example.svg and example.txt (and will destroy
+the previous contents of these files if they exist).
+
+-i, used both when encoding and decoding, doesn't store the IDs and
+creates numeric IDs for the decoded file (the read order
+of the original file is preserved).
+
+-q does the same with qualities (does not store them, but when
+decoding the qualities lines of the fastq lacks completely).
+
+-c sets the cutoff for quality values under
+which corresponding base calls are converted to N. Use
+the number corresponding to the desired ASCII character.
+
+-s 'prefix'
+can be used alone or when encoding a file and will create an
+svg with the histogram of the quality values and a tab
+delimited txt with observed quantities associated to quality values (see
+the previous example).
+
+-h will show an help message.
